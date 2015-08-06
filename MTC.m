@@ -1,4 +1,4 @@
-function [RMSE, rho] = MTC(X)
+function [RMSE, rho2] = MTC(X)
 % Multiplicative Triple Collocation (MTC) calculates the root-mean-squared-
 % error (RMSE) and correlation coefficient between three sets of data (from 
 % different measurement systems) and the true. The difference between MTC
@@ -17,8 +17,8 @@ function [RMSE, rho] = MTC(X)
 %       RMSE is a 1 * 3 vector representing the RMSE between each of the data 
 %            sets and the true.
 %
-%       rho  is a 1 * 3 vector representing the correlation coefficient between 
-%            each of the data sets and the true.
+%       rho2  is a 1 * 3 vector representing the squared correlation coefficient 
+%             between each of the data sets and the true.
 %
 %
 %%% Reference
@@ -72,6 +72,6 @@ RMSE(1, 1) = mean(sigma_t(:, 1));
 RMSE(1, 2) = mean(sigma_t(:, 2));
 RMSE(1, 3) = mean(sigma_t(:, 3));
 
-rho(1, 1) = (C(1,2) * C(1,3)) / (C(1,1) * C(2,3));
-rho(1, 2) = (C(1,2) * C(2,3)) / (C(2,2) * C(1,3));
-rho(1, 3) = (C(1,3) * C(2,3)) / (C(3,3) * C(1,2));
+rho2(1, 1) = (C(1,2) * C(1,3)) / (C(1,1) * C(2,3));
+rho2(1, 2) = (C(1,2) * C(2,3)) / (C(2,2) * C(1,3));
+rho2(1, 3) = (C(1,3) * C(2,3)) / (C(3,3) * C(1,2));
